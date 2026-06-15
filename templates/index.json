@@ -3,36 +3,32 @@
     "hero": {
       "type": "hero",
       "settings": {
-        "eyebrow": "Spring / Summer 2026",
-        "title": "See the World Differently",
-        "text": "Handcrafted eyewear for Pakistan's most discerning. Where Italian craftsmanship meets contemporary elegance.",
-        "button_label": "Explore Collection",
+        "eyebrow": "Spring Summer 2026",
+        "title": "See the World <em>Differently</em>",
+        "text": "Curated eyewear for Pakistan's most discerning. Where Italian craftsmanship meets contemporary elegance — each frame a quiet statement of refinement.",
+        "button_label": "Shop Collection",
         "button_link": "shopify://collections/all",
-        "button_label_2": "Our Story",
-        "button_link_2": "shopify://pages/about"
+        "button_label_2": "Private Appointment",
+        "button_link_2": "shopify://pages/contact"
       }
+    },
+    "marquee": {
+      "type": "marquee",
+      "blocks": {
+        "m1": { "type": "text", "settings": { "text": "Italian Craftsmanship" } },
+        "m2": { "type": "text", "settings": { "text": "UV400 Protection" } },
+        "m3": { "type": "text", "settings": { "text": "Hand-Polished Acetate" } },
+        "m4": { "type": "text", "settings": { "text": "White Glove Delivery" } },
+        "m5": { "type": "text", "settings": { "text": "Certificate of Authenticity" } }
+      },
+      "block_order": ["m1", "m2", "m3", "m4", "m5"]
     },
     "featured-collections": {
       "type": "featured-collections",
       "blocks": {
-        "collection-1": {
-          "type": "collection",
-          "settings": {
-            "title": "Aviators"
-          }
-        },
-        "collection-2": {
-          "type": "collection",
-          "settings": {
-            "title": "Cat Eye"
-          }
-        },
-        "collection-3": {
-          "type": "collection",
-          "settings": {
-            "title": "Oversized"
-          }
-        }
+        "collection-1": { "type": "collection", "settings": { "title": "The Aviator Edit" } },
+        "collection-2": { "type": "collection", "settings": { "title": "Cat Eye" } },
+        "collection-3": { "type": "collection", "settings": { "title": "Oversized" } }
       },
       "block_order": ["collection-1", "collection-2", "collection-3"],
       "settings": {
@@ -40,16 +36,6 @@
         "title": "Signature Collections",
         "text": "Each collection tells a story of precision, heritage, and uncompromising style."
       }
-    },
-    "trust-bar": {
-      "type": "trust-bar",
-      "blocks": {
-        "badge-1": { "type": "badge", "settings": { "icon": "shipping", "text": "Complimentary Delivery" } },
-        "badge-2": { "type": "badge", "settings": { "icon": "warranty", "text": "2-Year Warranty" } },
-        "badge-3": { "type": "badge", "settings": { "icon": "returns", "text": "30-Day Returns" } },
-        "badge-4": { "type": "badge", "settings": { "icon": "support", "text": "Personal Concierge" } }
-      },
-      "block_order": ["badge-1", "badge-2", "badge-3", "badge-4"]
     },
     "featured-products": {
       "type": "featured-products",
@@ -62,13 +48,43 @@
         "button_link": "shopify://collections/all"
       }
     },
+    "lookbook": {
+      "type": "lookbook",
+      "blocks": {
+        "l1": { "type": "look", "settings": { "title": "Midnight Aviator", "subtitle": "SS26 Collection" } },
+        "l2": { "type": "look", "settings": { "title": "Emerald Cat Eye", "subtitle": "Signature Series" } },
+        "l3": { "type": "look", "settings": { "title": "Gold Temple", "subtitle": "Limited Edition" } },
+        "l4": { "type": "look", "settings": { "title": "Polarised Classic", "subtitle": "Essentials" } },
+        "l5": { "type": "look", "settings": { "title": "Tortoise Oversized", "subtitle": "Heritage Line" } }
+      },
+      "block_order": ["l1", "l2", "l3", "l4", "l5"],
+      "settings": {
+        "eyebrow": "Editorial",
+        "title": "The Viso Lookbook"
+      }
+    },
+    "brand-story": {
+      "type": "brand-story",
+      "blocks": {
+        "s1": { "type": "stat", "settings": { "number": "200", "suffix": "+", "label": "Craft Steps Per Frame" } },
+        "s2": { "type": "stat", "settings": { "number": "12", "suffix": "", "label": "Global Atelier Partners" } },
+        "s3": { "type": "stat", "settings": { "number": "100", "suffix": "%", "label": "UV Protection" } },
+        "s4": { "type": "stat", "settings": { "number": "2", "suffix": "yr", "label": "Warranty Included" } }
+      },
+      "block_order": ["s1", "s2", "s3", "s4"],
+      "settings": {
+        "eyebrow": "The Viso Philosophy",
+        "quote": "Luxury is not loud. It is the weight of acetate on your temples, the clarity through Italian lenses, the confidence of knowing you chose impeccably.",
+        "author": "Founder's Note"
+      }
+    },
     "image-with-text": {
       "type": "image-with-text",
       "settings": {
         "layout": "image_left",
         "eyebrow": "Our Craft",
         "title": "Where Art Meets Precision",
-        "text": "<p>Every Viso frame begins in the ateliers of Northern Italy, where master artisans shape acetate with techniques passed down through generations. Each piece undergoes over 200 individual steps before it earns the Viso name.</p><p>We believe true luxury lies not in excess, but in the invisible details — the weight of a temple, the curve of a bridge, the clarity of a lens.</p>",
+        "text": "<p>Every Viso frame begins in the ateliers of Northern Italy, where master artisans shape acetate with techniques passed down through generations.</p><p>We believe true luxury lies not in excess, but in the invisible details — the weight of a temple, the curve of a bridge, the clarity of a lens.</p>",
         "button_label": "Discover Our Process",
         "button_link": "shopify://pages/about"
       }
@@ -76,33 +92,22 @@
     "testimonials": {
       "type": "testimonials",
       "blocks": {
-        "testimonial-1": {
-          "type": "testimonial",
-          "settings": {
-            "quote": "The attention to detail is extraordinary. These aren't just sunglasses — they're a statement.",
-            "author": "A.R., Lahore"
-          }
-        },
-        "testimonial-2": {
-          "type": "testimonial",
-          "settings": {
-            "quote": "Finally, eyewear that matches the calibre of my wardrobe. Viso understands luxury.",
-            "author": "S.K., Karachi"
-          }
-        },
-        "testimonial-3": {
-          "type": "testimonial",
-          "settings": {
-            "quote": "The white-glove delivery experience alone sets Viso apart. Impeccable from start to finish.",
-            "author": "F.H., Islamabad"
-          }
-        }
+        "testimonial-1": { "type": "testimonial", "settings": { "quote": "The attention to detail is extraordinary. These aren't just sunglasses — they're a statement.", "author": "A.R., Lahore" } },
+        "testimonial-2": { "type": "testimonial", "settings": { "quote": "Finally, eyewear that matches the calibre of my wardrobe. Viso understands luxury.", "author": "S.K., Karachi" } },
+        "testimonial-3": { "type": "testimonial", "settings": { "quote": "The white-glove delivery experience alone sets Viso apart. Impeccable from start to finish.", "author": "F.H., Islamabad" } }
       },
       "block_order": ["testimonial-1", "testimonial-2", "testimonial-3"],
-      "settings": {
-        "eyebrow": "Client Voices",
-        "title": "Trusted by the Discerning"
-      }
+      "settings": { "eyebrow": "Client Voices", "title": "Trusted by the Discerning" }
+    },
+    "trust-bar": {
+      "type": "trust-bar",
+      "blocks": {
+        "badge-1": { "type": "badge", "settings": { "icon": "shipping", "text": "Complimentary Delivery" } },
+        "badge-2": { "type": "badge", "settings": { "icon": "warranty", "text": "2-Year Warranty" } },
+        "badge-3": { "type": "badge", "settings": { "icon": "returns", "text": "30-Day Returns" } },
+        "badge-4": { "type": "badge", "settings": { "icon": "support", "text": "Personal Concierge" } }
+      },
+      "block_order": ["badge-1", "badge-2", "badge-3", "badge-4"]
     },
     "cta-banner": {
       "type": "cta-banner",
@@ -117,11 +122,14 @@
   },
   "order": [
     "hero",
+    "marquee",
     "featured-collections",
-    "trust-bar",
     "featured-products",
+    "lookbook",
+    "brand-story",
     "image-with-text",
     "testimonials",
+    "trust-bar",
     "cta-banner"
   ]
 }

@@ -1,0 +1,48 @@
+{%- if section.blocks.size > 0 -%}
+<section class="marquee" aria-hidden="true">
+  <div class="marquee__track">
+    {%- for i in (1..2) -%}
+      {%- for block in section.blocks -%}
+        <span class="marquee__item" {{ block.shopify_attributes }}>
+          {{ block.settings.text }}
+          <span class="marquee__dot"></span>
+        </span>
+      {%- endfor -%}
+    {%- endfor -%}
+  </div>
+</section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Marquee",
+  "tag": "section",
+  "max_blocks": 8,
+  "blocks": [
+    {
+      "type": "text",
+      "name": "Text",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "Italian Craftsmanship"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Marquee",
+      "blocks": [
+        { "type": "text", "settings": { "text": "Italian Craftsmanship" } },
+        { "type": "text", "settings": { "text": "UV400 Protection" } },
+        { "type": "text", "settings": { "text": "Hand-Polished Acetate" } },
+        { "type": "text", "settings": { "text": "White Glove Delivery" } },
+        { "type": "text", "settings": { "text": "Certificate of Authenticity" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

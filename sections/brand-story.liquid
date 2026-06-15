@@ -1,0 +1,113 @@
+<style>
+  .brand-story {
+    padding: var(--section-spacing) 0;
+    background: var(--color-surface);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .brand-story::before {
+    content: 'VISO';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: var(--font-heading);
+    font-size: clamp(8rem, 20vw, 18rem);
+    color: rgba(201, 169, 98, 0.03);
+    letter-spacing: 0.3em;
+    pointer-events: none;
+    white-space: nowrap;
+  }
+
+  .brand-story__inner {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 4rem;
+  }
+
+  .brand-story__quote {
+    font-family: var(--font-heading);
+    font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+    line-height: 1.35;
+    font-style: italic;
+    margin-bottom: 2rem;
+  }
+
+  .brand-story__author {
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    color: var(--color-gold);
+  }
+</style>
+
+<section class="brand-story">
+  <div class="page-width">
+    <div class="brand-story__inner animate-on-scroll">
+      <span class="eyebrow">{{ section.settings.eyebrow }}</span>
+      <blockquote class="brand-story__quote">"{{ section.settings.quote }}"</blockquote>
+      <p class="brand-story__author">— {{ section.settings.author }}</p>
+    </div>
+
+    <div class="stat-grid animate-on-scroll">
+      {%- for block in section.blocks -%}
+        <div class="stat-item" {{ block.shopify_attributes }}>
+          <p class="stat-item__number" data-count="{{ block.settings.number }}" data-suffix="{{ block.settings.suffix }}">0</p>
+          <p class="stat-item__label">{{ block.settings.label }}</p>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Brand story",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "The Viso Philosophy"
+    },
+    {
+      "type": "textarea",
+      "id": "quote",
+      "label": "Quote",
+      "default": "Luxury is not loud. It is the weight of acetate on your temples, the clarity through Italian lenses, the confidence of knowing you chose impeccably."
+    },
+    {
+      "type": "text",
+      "id": "author",
+      "label": "Author",
+      "default": "Founder's Note"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "stat",
+      "name": "Statistic",
+      "settings": [
+        { "type": "text", "id": "number", "label": "Number", "default": "200" },
+        { "type": "text", "id": "suffix", "label": "Suffix", "default": "+" },
+        { "type": "text", "id": "label", "label": "Label", "default": "Craft Steps Per Frame" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Brand story",
+      "blocks": [
+        { "type": "stat", "settings": { "number": "200", "suffix": "+", "label": "Craft Steps Per Frame" } },
+        { "type": "stat", "settings": { "number": "12", "suffix": "", "label": "Global Atelier Partners" } },
+        { "type": "stat", "settings": { "number": "100", "suffix": "%", "label": "UV Protection" } },
+        { "type": "stat", "settings": { "number": "2", "suffix": "yr", "label": "Warranty Included" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,32 +1,47 @@
 {%- liquid
   assign card_product = card_product | default: product
-  assign show_vendor = show_vendor | default: false
+  assign show_vendor = show_vendor | default: true
+  assign second_image = card_product.images[1]
 -%}
 
 <div class="product-card">
   <a href="{{ card_product.url }}" class="product-card__link">
-    <div class="product-card__media">
+    <div class="product-card__media luxury-frame">
       {%- if card_product.featured_image -%}
-        {{ card_product.featured_image | image_url: width: 600 | image_tag:
+        {{ card_product.featured_image | image_url: width: 800 | image_tag:
+          class: 'product-card__media-primary',
           loading: 'lazy',
-          widths: '300, 400, 600',
+          widths: '400, 600, 800',
           sizes: '(min-width: 990px) 25vw, (min-width: 750px) 33vw, 50vw',
           alt: card_product.featured_image.alt | escape
         }}
+        {%- if second_image -%}
+          {{ second_image | image_url: width: 800 | image_tag:
+            class: 'product-card__media-hover',
+            loading: 'lazy',
+            alt: second_image.alt | escape
+          }}
+        {%- endif -%}
       {%- else -%}
         <div class="placeholder-image">Viso</div>
       {%- endif -%}
 
+      <div class="product-card__overlay"></div>
+
       {%- if card_product.compare_at_price > card_product.price -%}
-        <span class="product-card__badge">Sale</span>
+        <span class="product-card__badge">Limited Offer</span>
       {%- elsif card_product.tags contains 'new' -%}
-        <span class="product-card__badge">New</span>
+        <span class="product-card__badge">New Arrival</span>
+      {%- elsif card_product.tags contains 'bestseller' -%}
+        <span class="product-card__badge">Bestseller</span>
       {%- endif -%}
+
+      <span class="product-card__quick-view">View Details</span>
     </div>
 
     <div class="product-card__info">
       {%- if show_vendor and card_product.vendor != blank -%}
-        <p class="text-muted" style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.25rem;">{{ card_product.vendor }}</p>
+        <p class="product-card__vendor">{{ card_product.vendor }}</p>
       {%- endif -%}
       <h3 class="product-card__title">{{ card_product.title }}</h3>
       <div class="product-card__price">
