@@ -1,0 +1,18 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-cart"
+    },
+    "trust-bar": {
+      "type": "trust-bar",
+      "blocks": {
+        "badge-1": { "type": "badge", "settings": { "icon": "shipping", "text": "Complimentary Delivery" } },
+        "badge-2": { "type": "badge", "settings": { "icon": "warranty", "text": "2-Year Warranty" } },
+        "badge-3": { "type": "badge", "settings": { "icon": "returns", "text": "30-Day Returns" } },
+        "badge-4": { "type": "badge", "settings": { "icon": "support", "text": "Personal Concierge" } }
+      },
+      "block_order": ["badge-1", "badge-2", "badge-3", "badge-4"]
+    }
+  },
+  "order": ["main", "trust-bar"]
+}

@@ -1,0 +1,44 @@
+{
+  "current": {
+    "color_background": "#0a0a0a",
+    "color_surface": "#141414",
+    "color_text": "#f5f0e8",
+    "color_text_muted": "#a8a29e",
+    "color_accent": "#1a3d32",
+    "color_gold": "#c9a962",
+    "color_border": "#2a2a2a",
+    "font_heading": "playfair_display_n4",
+    "font_body": "inter_n4",
+    "font_size_base": 16,
+    "logo_width": 120,
+    "cart_type": "drawer",
+    "cart_show_note": true,
+    "social_instagram": "https://instagram.com/viso",
+    "social_whatsapp": "923001234567",
+    "sections": {
+      "header": {
+        "type": "header",
+        "settings": {
+          "menu": "main-menu",
+          "enable_sticky": true
+        }
+      },
+      "footer": {
+        "type": "footer",
+        "settings": {
+          "menu": "footer",
+          "newsletter_heading": "Join the Viso Circle",
+          "newsletter_text": "Exclusive access to new collections, private events, and curated style insights."
+        }
+      },
+      "announcement-bar": {
+        "type": "announcement-bar",
+        "settings": {
+          "text": "Complimentary white-glove delivery across Pakistan",
+          "link": ""
+        }
+      }
+    },
+    "content_for_index": []
+  }
+}

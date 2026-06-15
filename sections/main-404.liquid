@@ -1,0 +1,40 @@
+<style>
+  .page-404 {
+    text-align: center;
+    padding: calc(var(--section-spacing) * 2) 0;
+  }
+
+  .page-404__code {
+    font-family: var(--font-heading);
+    font-size: clamp(6rem, 15vw, 12rem);
+    color: var(--color-gold);
+    opacity: 0.3;
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
+
+  .page-404__title {
+    margin-bottom: 1rem;
+  }
+
+  .page-404__text {
+    color: var(--color-text-muted);
+    margin-bottom: 2rem;
+  }
+</style>
+
+<section class="page-404">
+  <div class="page-width">
+    <p class="page-404__code">404</p>
+    <h1 class="page-404__title">{{ 'general.404.title' | t }}</h1>
+    <p class="page-404__text">{{ 'general.404.subtext' | t }}</p>
+    <a href="/" class="btn btn--outline-gold">{{ 'general.404.link' | t }}</a>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "404 page",
+  "tag": "section"
+}
+{% endschema %}

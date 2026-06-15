@@ -1,0 +1,215 @@
+<style>
+  .header {
+    position: relative;
+    z-index: 100;
+    border-bottom: 1px solid var(--color-border);
+    {% if section.settings.enable_sticky %}
+    position: sticky;
+    top: 0;
+    background: var(--color-background);
+    {% endif %}
+  }
+
+  .header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem var(--page-gutter);
+    max-width: var(--page-width);
+    margin: 0 auto;
+  }
+
+  .header__logo {
+    flex-shrink: 0;
+  }
+
+  .header__logo-text {
+    font-family: var(--font-heading);
+    font-size: 1.75rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+  }
+
+  .header__logo img {
+    width: {{ settings.logo_width }}px;
+    height: auto;
+  }
+
+  .header__nav {
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+  }
+
+  .header__nav-link {
+    font-size: 0.8125rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    position: relative;
+  }
+
+  .header__nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: var(--color-gold);
+    transform: scaleX(0);
+    transition: transform var(--transition);
+  }
+
+  .header__nav-link:hover::after {
+    transform: scaleX(1);
+  }
+
+  .header__icons {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+  }
+
+  .header__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    color: var(--color-text);
+    transition: color var(--transition);
+    position: relative;
+  }
+
+  .header__icon:hover {
+    color: var(--color-gold);
+  }
+
+  .header__cart-count {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    width: 16px;
+    height: 16px;
+    background: var(--color-gold);
+    color: var(--color-background);
+    font-size: 0.625rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .mobile-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    max-width: 400px;
+    height: 100%;
+    background: var(--color-background);
+    z-index: 999;
+    transform: translateX(-100%);
+    transition: transform var(--transition);
+    padding: 2rem var(--page-gutter);
+    overflow-y: auto;
+  }
+
+  .mobile-menu.is-active {
+    transform: translateX(0);
+  }
+
+  .mobile-menu__link {
+    display: block;
+    padding: 1rem 0;
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  @media (max-width: 989px) {
+    .header__nav { display: none; }
+  }
+
+  @media (min-width: 990px) {
+    .header__menu-toggle { display: none; }
+  }
+</style>
+
+<header class="header" role="banner">
+  <div class="header__inner">
+    <button class="header__icon header__menu-toggle" data-mobile-menu-toggle aria-label="{{ 'general.accessibility.menu' | t }}">
+      {% render 'icon-menu' %}
+    </button>
+
+    <a href="/" class="header__logo">
+      {%- if settings.logo != blank -%}
+        {{ settings.logo | image_url: width: 400 | image_tag: alt: shop.name, loading: 'eager' }}
+      {%- else -%}
+        <span class="header__logo-text">Viso</span>
+      {%- endif -%}
+    </a>
+
+    <nav class="header__nav" role="navigation">
+      {%- for link in linklists[section.settings.menu].links -%}
+        <a href="{{ link.url }}" class="header__nav-link">{{ link.title }}</a>
+      {%- endfor -%}
+    </nav>
+
+    <div class="header__icons">
+      <button class="header__icon" data-search-toggle aria-label="{{ 'general.accessibility.search' | t }}">
+        {% render 'icon-search' %}
+      </button>
+
+      <a href="/account" class="header__icon hide-mobile" aria-label="{{ 'customer.account.title' | t }}">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      </a>
+
+      {%- if settings.cart_type == 'drawer' -%}
+        <button class="header__icon" data-cart-toggle aria-label="{{ 'general.accessibility.cart' | t }}">
+          {% render 'icon-cart' %}
+          {%- if cart.item_count > 0 -%}
+            <span class="header__cart-count">{{ cart.item_count }}</span>
+          {%- endif -%}
+        </button>
+      {%- else -%}
+        <a href="/cart" class="header__icon" aria-label="{{ 'general.accessibility.cart' | t }}">
+          {% render 'icon-cart' %}
+          {%- if cart.item_count > 0 -%}
+            <span class="header__cart-count">{{ cart.item_count }}</span>
+          {%- endif -%}
+        </a>
+      {%- endif -%}
+    </div>
+  </div>
+</header>
+
+<div class="overlay" data-mobile-menu-overlay></div>
+<nav class="mobile-menu" data-mobile-menu aria-label="Mobile navigation">
+  <button class="modal__close" data-mobile-menu-close aria-label="{{ 'general.accessibility.close' | t }}" style="margin-bottom: 2rem;">
+    {% render 'icon-close' %}
+  </button>
+  {%- for link in linklists[section.settings.menu].links -%}
+    <a href="{{ link.url }}" class="mobile-menu__link">{{ link.title }}</a>
+  {%- endfor -%}
+</nav>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menu",
+      "default": "main-menu"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_sticky",
+      "label": "Enable sticky header",
+      "default": true
+    }
+  ]
+}
+{% endschema %}

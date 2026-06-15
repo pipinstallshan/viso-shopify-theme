@@ -1,0 +1,100 @@
+{
+  "general": {
+    "accessibility": {
+      "skip_to_content": "Skip to content",
+      "close": "Close",
+      "menu": "Menu",
+      "search": "Search",
+      "cart": "Cart"
+    },
+    "search": {
+      "placeholder": "Search eyewear...",
+      "no_results": "No results found",
+      "results_count": "{{ count }} results"
+    },
+    "pagination": {
+      "previous": "Previous",
+      "next": "Next",
+      "page": "Page {{ current }} of {{ total }}"
+    },
+    "404": {
+      "title": "Page not found",
+      "subtext": "The page you requested does not exist.",
+      "link": "Return to home"
+    }
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "Add to Cart",
+      "sold_out": "Sold Out",
+      "unavailable": "Unavailable",
+      "quantity": "Quantity",
+      "price": "Price",
+      "compare_at_price": "Compare at",
+      "description": "Description",
+      "details": "Details",
+      "shipping": "Shipping & Returns",
+      "related": "You May Also Like",
+      "view_product": "View Product"
+    }
+  },
+  "collections": {
+    "general": {
+      "title": "Collections",
+      "no_products": "No products found",
+      "products_count": "{{ count }} products",
+      "sort_by": "Sort by",
+      "filter": "Filter"
+    },
+    "sorting": {
+      "manual": "Featured",
+      "best_selling": "Best selling",
+      "title_ascending": "Alphabetically, A-Z",
+      "title_descending": "Alphabetically, Z-A",
+      "price_ascending": "Price, low to high",
+      "price_descending": "Price, high to low",
+      "created_descending": "Newest"
+    }
+  },
+  "cart": {
+    "general": {
+      "title": "Your Selection",
+      "empty": "Your cart is empty",
+      "continue_shopping": "Continue Shopping",
+      "subtotal": "Subtotal",
+      "checkout": "Proceed to Checkout",
+      "note": "Order note",
+      "note_placeholder": "Special instructions for your order",
+      "remove": "Remove",
+      "update": "Update",
+      "shipping_note": "Shipping and taxes calculated at checkout"
+    }
+  },
+  "customer": {
+    "account": {
+      "title": "Account",
+      "login": "Sign In",
+      "logout": "Sign Out",
+      "register": "Create Account"
+    }
+  },
+  "contact": {
+    "form": {
+      "title": "Contact Us",
+      "name": "Name",
+      "email": "Email",
+      "phone": "Phone",
+      "message": "Message",
+      "send": "Send Message",
+      "success": "Thank you for reaching out. We will respond shortly."
+    }
+  },
+  "newsletter": {
+    "label": "Email address",
+    "button": "Subscribe",
+    "success": "Welcome to the Viso Circle."
+  },
+  "footer": {
+    "copyright": "All rights reserved."
+  }
+}

@@ -1,0 +1,185 @@
+<style>
+  .page-header {
+    text-align: center;
+    padding: var(--section-spacing) 0 3rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .page-header__title {
+    margin-bottom: 1rem;
+  }
+
+  .page-header__text {
+    color: var(--color-text-muted);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  .about-content {
+    padding: var(--section-spacing) 0;
+  }
+
+  .about-content__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    margin-bottom: var(--section-spacing);
+  }
+
+  .about-content__text {
+    color: var(--color-text-muted);
+    line-height: 1.8;
+  }
+
+  .about-content__text h3 {
+    color: var(--color-text);
+    margin: 2rem 0 1rem;
+  }
+
+  .about-values {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    padding: var(--section-spacing) 0;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .about-value {
+    text-align: center;
+    padding: 2rem;
+  }
+
+  .about-value__icon {
+    color: var(--color-gold);
+    margin-bottom: 1.5rem;
+  }
+
+  .about-value__title {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .about-value__text {
+    color: var(--color-text-muted);
+    font-size: 0.9375rem;
+    line-height: 1.7;
+  }
+
+  @media (max-width: 989px) {
+    .about-content__grid,
+    .about-values {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<section class="page-header">
+  <div class="page-width animate-on-scroll">
+    <span class="eyebrow">{{ section.settings.eyebrow }}</span>
+    <h1 class="page-header__title">{{ section.settings.title }}</h1>
+    {%- if section.settings.subtitle != blank -%}
+      <p class="page-header__text">{{ section.settings.subtitle }}</p>
+    {%- endif -%}
+    <div class="divider"></div>
+  </div>
+</section>
+
+<section class="about-content">
+  <div class="page-width">
+    <div class="about-content__grid animate-on-scroll">
+      <div class="about-content__text">
+        {{ section.settings.story }}
+      </div>
+      <div>
+        {%- if section.settings.image != blank -%}
+          {{ section.settings.image | image_url: width: 800 | image_tag: loading: 'lazy', alt: section.settings.title, style: 'width: 100%; aspect-ratio: 4/5; object-fit: cover;' }}
+        {%- else -%}
+          <div class="placeholder-image" style="aspect-ratio: 4/5;">Viso Atelier</div>
+        {%- endif -%}
+      </div>
+    </div>
+
+    <div class="about-values">
+      {%- for block in section.blocks -%}
+        <div class="about-value animate-on-scroll" {{ block.shopify_attributes }}>
+          <div class="about-value__icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <h3 class="about-value__title">{{ block.settings.title }}</h3>
+          <p class="about-value__text">{{ block.settings.text }}</p>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "About page",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Our Story"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Born From Vision"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Viso was founded on a simple belief: Pakistan's elite deserve eyewear that matches their stature."
+    },
+    {
+      "type": "richtext",
+      "id": "story",
+      "label": "Story content",
+      "default": "<p>Founded in Lahore, Viso emerged from a gap in the market — a void where true luxury eyewear should have existed. We saw discerning individuals settling for mass-produced frames when they deserved craftsmanship worthy of their taste.</p><h3>The Viso Difference</h3><p>Every frame in our collection is sourced from the world's finest ateliers — from the acetate workshops of Northern Italy to the lens laboratories of Japan. We curate, never compromise.</p><p>Our private styling sessions, white-glove delivery, and lifetime care programme ensure that owning Viso is an experience, not merely a purchase.</p>"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "value",
+      "name": "Value",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Craftsmanship"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Text",
+          "default": "Every frame passes through over 200 individual steps of artisan production."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "About page",
+      "blocks": [
+        { "type": "value", "settings": { "title": "Craftsmanship", "text": "Every frame passes through over 200 individual steps of artisan production." } },
+        { "type": "value", "settings": { "title": "Curation", "text": "We select only the finest pieces from the world's most respected eyewear houses." } },
+        { "type": "value", "settings": { "title": "Experience", "text": "From private styling to white-glove delivery, every touchpoint reflects our standards." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

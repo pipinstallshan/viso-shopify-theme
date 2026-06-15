@@ -1,0 +1,150 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Viso",
+    "theme_version": "1.0.0",
+    "theme_author": "Viso",
+    "theme_documentation_url": "https://viso.pk",
+    "theme_support_url": "https://viso.pk/support"
+  },
+  {
+    "name": "Colors",
+    "settings": [
+      {
+        "type": "color",
+        "id": "color_background",
+        "label": "Background",
+        "default": "#0a0a0a"
+      },
+      {
+        "type": "color",
+        "id": "color_surface",
+        "label": "Surface",
+        "default": "#141414"
+      },
+      {
+        "type": "color",
+        "id": "color_text",
+        "label": "Text",
+        "default": "#f5f0e8"
+      },
+      {
+        "type": "color",
+        "id": "color_text_muted",
+        "label": "Muted text",
+        "default": "#a8a29e"
+      },
+      {
+        "type": "color",
+        "id": "color_accent",
+        "label": "Accent (Emerald)",
+        "default": "#1a3d32"
+      },
+      {
+        "type": "color",
+        "id": "color_gold",
+        "label": "Gold accent",
+        "default": "#c9a962"
+      },
+      {
+        "type": "color",
+        "id": "color_border",
+        "label": "Border",
+        "default": "#2a2a2a"
+      }
+    ]
+  },
+  {
+    "name": "Typography",
+    "settings": [
+      {
+        "type": "font_picker",
+        "id": "font_heading",
+        "label": "Heading font",
+        "default": "playfair_display_n4"
+      },
+      {
+        "type": "font_picker",
+        "id": "font_body",
+        "label": "Body font",
+        "default": "inter_n4"
+      },
+      {
+        "type": "range",
+        "id": "font_size_base",
+        "label": "Base font size",
+        "min": 14,
+        "max": 18,
+        "step": 1,
+        "unit": "px",
+        "default": 16
+      }
+    ]
+  },
+  {
+    "name": "Brand",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Logo"
+      },
+      {
+        "type": "range",
+        "id": "logo_width",
+        "label": "Logo width",
+        "min": 60,
+        "max": 200,
+        "step": 10,
+        "unit": "px",
+        "default": 120
+      },
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Favicon"
+      }
+    ]
+  },
+  {
+    "name": "Social media",
+    "settings": [
+      {
+        "type": "text",
+        "id": "social_instagram",
+        "label": "Instagram URL"
+      },
+      {
+        "type": "text",
+        "id": "social_facebook",
+        "label": "Facebook URL"
+      },
+      {
+        "type": "text",
+        "id": "social_whatsapp",
+        "label": "WhatsApp number (with country code)"
+      }
+    ]
+  },
+  {
+    "name": "Cart",
+    "settings": [
+      {
+        "type": "select",
+        "id": "cart_type",
+        "label": "Cart type",
+        "options": [
+          { "value": "drawer", "label": "Drawer" },
+          { "value": "page", "label": "Page" }
+        ],
+        "default": "drawer"
+      },
+      {
+        "type": "checkbox",
+        "id": "cart_show_note",
+        "label": "Enable cart note",
+        "default": true
+      }
+    ]
+  }
+]

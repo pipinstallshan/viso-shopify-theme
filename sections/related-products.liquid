@@ -1,0 +1,58 @@
+{%- if product -%}
+<product-recommendations
+  class="related-products-wrapper"
+  data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit=4"
+>
+{%- endif -%}
+
+{%- if recommendations.performed and recommendations.products_count > 0 -%}
+<section class="related-products">
+  <div class="page-width">
+    <div class="section-header animate-on-scroll">
+      <span class="eyebrow">Curated For You</span>
+      <h2 class="section-header__title">{{ 'products.product.related' | t }}</h2>
+      <div class="divider"></div>
+    </div>
+
+    <div class="related-products__grid">
+      {%- for rec_product in recommendations.products limit: 4 -%}
+        <div class="animate-on-scroll">
+          {% render 'product-card', card_product: rec_product %}
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+{%- endif -%}
+
+{%- if product -%}
+</product-recommendations>
+{%- endif -%}
+
+<style>
+  .related-products {
+    padding: var(--section-spacing) 0;
+    background: var(--color-surface);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .related-products__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+  }
+
+  @media (max-width: 989px) {
+    .related-products__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Related products",
+  "tag": "section",
+  "settings": []
+}
+{% endschema %}

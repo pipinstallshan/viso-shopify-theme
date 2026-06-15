@@ -1,0 +1,162 @@
+<style>
+  .contact-page {
+    padding: var(--section-spacing) 0;
+  }
+
+  .contact-page__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+  }
+
+  .contact-info__item {
+    margin-bottom: 2rem;
+  }
+
+  .contact-info__label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--color-gold);
+    margin-bottom: 0.5rem;
+  }
+
+  .contact-info__value {
+    font-size: 1.0625rem;
+    line-height: 1.6;
+  }
+
+  .contact-form-wrapper {
+    padding: 2.5rem;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+  }
+
+  @media (max-width: 989px) {
+    .contact-page__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<section class="page-header">
+  <div class="page-width animate-on-scroll">
+    <span class="eyebrow">{{ section.settings.eyebrow }}</span>
+    <h1 class="page-header__title">{{ section.settings.title }}</h1>
+    {%- if section.settings.subtitle != blank -%}
+      <p class="page-header__text">{{ section.settings.subtitle }}</p>
+    {%- endif -%}
+    <div class="divider"></div>
+  </div>
+</section>
+
+<section class="contact-page">
+  <div class="page-width">
+    <div class="contact-page__grid">
+      <div class="contact-info animate-on-scroll">
+        <div class="contact-info__item">
+          <p class="contact-info__label">Flagship Store</p>
+          <p class="contact-info__value">{{ section.settings.address }}</p>
+        </div>
+        <div class="contact-info__item">
+          <p class="contact-info__label">Email</p>
+          <p class="contact-info__value"><a href="mailto:{{ section.settings.email }}">{{ section.settings.email }}</a></p>
+        </div>
+        <div class="contact-info__item">
+          <p class="contact-info__label">Phone</p>
+          <p class="contact-info__value"><a href="tel:{{ section.settings.phone }}">{{ section.settings.phone }}</a></p>
+        </div>
+        <div class="contact-info__item">
+          <p class="contact-info__label">Hours</p>
+          <p class="contact-info__value">{{ section.settings.hours }}</p>
+        </div>
+        {%- if settings.social_whatsapp != blank -%}
+          <a href="https://wa.me/{{ settings.social_whatsapp }}" class="btn btn--outline-gold" target="_blank" rel="noopener">WhatsApp Concierge</a>
+        {%- endif -%}
+      </div>
+
+      <div class="contact-form-wrapper animate-on-scroll">
+        <h3 style="font-family: var(--font-heading); margin-bottom: 1.5rem;">{{ 'contact.form.title' | t }}</h3>
+        {% form 'contact' %}
+          {%- if form.posted_successfully? -%}
+            <p style="color: var(--color-gold); margin-bottom: 1.5rem;">{{ 'contact.form.success' | t }}</p>
+          {%- endif -%}
+
+          <div class="form-field">
+            <label for="ContactName">{{ 'contact.form.name' | t }}</label>
+            <input type="text" id="ContactName" name="contact[name]" class="form-input" required>
+          </div>
+          <div class="form-field">
+            <label for="ContactEmail">{{ 'contact.form.email' | t }}</label>
+            <input type="email" id="ContactEmail" name="contact[email]" class="form-input" required>
+          </div>
+          <div class="form-field">
+            <label for="ContactPhone">{{ 'contact.form.phone' | t }}</label>
+            <input type="tel" id="ContactPhone" name="contact[phone]" class="form-input">
+          </div>
+          <div class="form-field">
+            <label for="ContactMessage">{{ 'contact.form.message' | t }}</label>
+            <textarea id="ContactMessage" name="contact[body]" class="form-textarea" required></textarea>
+          </div>
+          <button type="submit" class="btn btn--primary btn--full">{{ 'contact.form.send' | t }}</button>
+        {% endform %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Contact page",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Get In Touch"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "We'd Love To Hear From You"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Whether you're seeking styling advice, booking a private appointment, or have a question — our concierge team is here."
+    },
+    {
+      "type": "textarea",
+      "id": "address",
+      "label": "Address",
+      "default": "Viso Flagship\nGulberg III, Lahore\nPakistan"
+    },
+    {
+      "type": "text",
+      "id": "email",
+      "label": "Email",
+      "default": "concierge@viso.pk"
+    },
+    {
+      "type": "text",
+      "id": "phone",
+      "label": "Phone",
+      "default": "+92 300 123 4567"
+    },
+    {
+      "type": "textarea",
+      "id": "hours",
+      "label": "Hours",
+      "default": "Monday – Saturday: 11am – 8pm\nSunday: By appointment"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Contact page"
+    }
+  ]
+}
+{% endschema %}

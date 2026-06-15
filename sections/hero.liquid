@@ -1,0 +1,183 @@
+<style>
+  .hero {
+    position: relative;
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .hero__media {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  .hero__media img,
+  .hero__media video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(10,10,10,0.85) 0%, rgba(26,61,50,0.6) 50%, rgba(10,10,10,0.75) 100%);
+    z-index: 1;
+  }
+
+  .hero__content {
+    position: relative;
+    z-index: 2;
+    max-width: 700px;
+    padding: var(--section-spacing) var(--page-gutter);
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .hero__title {
+    margin-bottom: 1.5rem;
+    animation: fadeInUp 1s ease forwards;
+  }
+
+  .hero__text {
+    font-size: 1.125rem;
+    color: var(--color-text-muted);
+    line-height: 1.8;
+    margin-bottom: 2.5rem;
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
+    animation: fadeInUp 1s ease 0.2s forwards;
+    opacity: 0;
+  }
+
+  .hero__actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    animation: fadeInUp 1s ease 0.4s forwards;
+    opacity: 0;
+  }
+
+  .hero__scroll {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--color-text-muted);
+    animation: fadeIn 1s ease 1s forwards;
+    opacity: 0;
+  }
+
+  .hero__scroll-line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, var(--color-gold), transparent);
+    animation: fadeInUp 2s ease infinite;
+  }
+</style>
+
+<section class="hero">
+  <div class="hero__media">
+    {%- if section.settings.image != blank -%}
+      {{ section.settings.image | image_url: width: 2000 | image_tag: loading: 'eager', fetchpriority: 'high', alt: section.settings.title }}
+    {%- else -%}
+      <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #0a0a0a 0%, #1a3d32 50%, #0a0a0a 100%);"></div>
+    {%- endif -%}
+  </div>
+  <div class="hero__overlay"></div>
+
+  <div class="hero__content">
+    {%- if section.settings.eyebrow != blank -%}
+      <span class="eyebrow">{{ section.settings.eyebrow }}</span>
+    {%- endif -%}
+    <h1 class="hero__title">{{ section.settings.title }}</h1>
+    {%- if section.settings.text != blank -%}
+      <p class="hero__text">{{ section.settings.text }}</p>
+    {%- endif -%}
+    <div class="hero__actions">
+      {%- if section.settings.button_label != blank -%}
+        <a href="{{ section.settings.button_link }}" class="btn btn--primary">{{ section.settings.button_label }}</a>
+      {%- endif -%}
+      {%- if section.settings.button_label_2 != blank -%}
+        <a href="{{ section.settings.button_link_2 }}" class="btn btn--secondary">{{ section.settings.button_label_2 }}</a>
+      {%- endif -%}
+    </div>
+  </div>
+
+  <div class="hero__scroll">
+    <span>Scroll</span>
+    <div class="hero__scroll-line"></div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Hero",
+  "tag": "section",
+  "class": "section-hero",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Background image"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow text",
+      "default": "Spring / Summer 2026"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "See the World Differently"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Description",
+      "default": "Handcrafted eyewear for Pakistan's most discerning. Where Italian craftsmanship meets contemporary elegance."
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Primary button label",
+      "default": "Explore Collection"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Primary button link"
+    },
+    {
+      "type": "text",
+      "id": "button_label_2",
+      "label": "Secondary button label",
+      "default": "Our Story"
+    },
+    {
+      "type": "url",
+      "id": "button_link_2",
+      "label": "Secondary button link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero"
+    }
+  ]
+}
+{% endschema %}

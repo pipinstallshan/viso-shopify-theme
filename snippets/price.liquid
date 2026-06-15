@@ -1,0 +1,25 @@
+{%- liquid
+  assign target = product.selected_or_first_available_variant
+  assign compare_at_price = target.compare_at_price
+  assign price = target.price
+  assign available = target.available | default: false
+  assign price_class = price_class | default: 'price'
+-%}
+
+<span class="{{ price_class }}{% if compare_at_price > price %} {{ price_class }}--sale{% endif %}">
+  {%- if price == 0 -%}
+    Free
+  {%- else -%}
+    {{ price | money }}
+  {%- endif -%}
+</span>
+
+{%- if compare_at_price > price -%}
+  <span class="{{ price_class }}--compare">
+    {{ compare_at_price | money }}
+  </span>
+{%- endif -%}
+
+{%- unless available -%}
+  <span class="badge" style="margin-left: 0.5rem;">Sold Out</span>
+{%- endunless -%}

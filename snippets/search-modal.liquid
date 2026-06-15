@@ -1,0 +1,22 @@
+<div class="overlay" data-search-overlay></div>
+
+<div class="modal" data-search-modal role="dialog" aria-label="{{ 'general.accessibility.search' | t }}">
+  <div class="modal__content" style="max-width: 700px;">
+    <button class="modal__close" data-search-close aria-label="{{ 'general.accessibility.close' | t }}">
+      {% render 'icon-close' %}
+    </button>
+    <form action="/search" method="get" role="search">
+      <div style="display: flex; align-items: center; gap: 1rem; border-bottom: 1px solid var(--color-border); padding-bottom: 1rem;">
+        {% render 'icon-search', size: 24 %}
+        <input
+          type="search"
+          name="q"
+          placeholder="{{ 'general.search.placeholder' | t }}"
+          class="form-input"
+          style="border: none; background: transparent; font-size: 1.25rem; padding: 0;"
+          autocomplete="off"
+        >
+      </div>
+    </form>
+  </div>
+</div>

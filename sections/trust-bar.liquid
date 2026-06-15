@@ -1,0 +1,77 @@
+<style>
+  .trust-bar {
+    padding: 3rem 0;
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+  }
+</style>
+
+<section class="trust-bar">
+  <div class="page-width">
+    <div class="trust-badges">
+      {%- for block in section.blocks -%}
+        <div class="trust-badge animate-on-scroll" {{ block.shopify_attributes }}>
+          {%- case block.settings.icon -%}
+            {%- when 'shipping' -%}
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+            {%- when 'warranty' -%}
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            {%- when 'returns' -%}
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
+            {%- when 'support' -%}
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            {%- else -%}
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          {%- endcase -%}
+          <span>{{ block.settings.text }}</span>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Trust bar",
+  "tag": "section",
+  "max_blocks": 4,
+  "blocks": [
+    {
+      "type": "badge",
+      "name": "Trust badge",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "shipping", "label": "Shipping" },
+            { "value": "warranty", "label": "Warranty" },
+            { "value": "returns", "label": "Returns" },
+            { "value": "support", "label": "Support" },
+            { "value": "star", "label": "Star" }
+          ],
+          "default": "shipping"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "Complimentary Delivery"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Trust bar",
+      "blocks": [
+        { "type": "badge", "settings": { "icon": "shipping", "text": "Complimentary Delivery" } },
+        { "type": "badge", "settings": { "icon": "warranty", "text": "2-Year Warranty" } },
+        { "type": "badge", "settings": { "icon": "returns", "text": "30-Day Returns" } },
+        { "type": "badge", "settings": { "icon": "support", "text": "Personal Concierge" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,149 @@
+<style>
+  .image-with-text {
+    padding: var(--section-spacing) 0;
+  }
+
+  .image-with-text__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .image-with-text__grid--reverse {
+    direction: rtl;
+  }
+
+  .image-with-text__grid--reverse > * {
+    direction: ltr;
+  }
+
+  .image-with-text__media {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 4/5;
+  }
+
+  .image-with-text__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .image-with-text__media::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border: 1px solid var(--color-gold);
+    transform: translate(20px, 20px);
+    pointer-events: none;
+  }
+
+  .image-with-text__content {
+    padding: 2rem 0;
+  }
+
+  .image-with-text__title {
+    margin-bottom: 1.5rem;
+  }
+
+  .image-with-text__text {
+    color: var(--color-text-muted);
+    line-height: 1.8;
+    margin-bottom: 2rem;
+  }
+
+  @media (max-width: 989px) {
+    .image-with-text__grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    .image-with-text__grid--reverse {
+      direction: ltr;
+    }
+  }
+</style>
+
+<section class="image-with-text">
+  <div class="page-width">
+    <div class="image-with-text__grid{% if section.settings.layout == 'image_right' %} image-with-text__grid--reverse{% endif %}">
+      <div class="image-with-text__media animate-on-scroll">
+        {%- if section.settings.image != blank -%}
+          {{ section.settings.image | image_url: width: 1000 | image_tag: loading: 'lazy', alt: section.settings.title }}
+        {%- else -%}
+          <div class="placeholder-image" style="height: 100%; background: linear-gradient(135deg, var(--color-surface), var(--color-accent));">Craftsmanship</div>
+        {%- endif -%}
+      </div>
+
+      <div class="image-with-text__content animate-on-scroll">
+        {%- if section.settings.eyebrow != blank -%}
+          <span class="eyebrow">{{ section.settings.eyebrow }}</span>
+        {%- endif -%}
+        <h2 class="image-with-text__title">{{ section.settings.title }}</h2>
+        <div class="divider divider--left"></div>
+        <div class="image-with-text__text">{{ section.settings.text }}</div>
+        {%- if section.settings.button_label != blank -%}
+          <a href="{{ section.settings.button_link }}" class="link-underline">{{ section.settings.button_label }}</a>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Image with text",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "Image position",
+      "options": [
+        { "value": "image_left", "label": "Left" },
+        { "value": "image_right", "label": "Right" }
+      ],
+      "default": "image_left"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Our Craft"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Where Art Meets Precision"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "<p>Every Viso frame begins in the ateliers of Northern Italy, where master artisans shape acetate with techniques passed down through generations. Each piece undergoes over 200 individual steps before it earns the Viso name.</p><p>We believe true luxury lies not in excess, but in the invisible details — the weight of a temple, the curve of a bridge, the clarity of a lens.</p>"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Discover Our Process"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Image with text"
+    }
+  ]
+}
+{% endschema %}

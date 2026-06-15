@@ -1,0 +1,126 @@
+<style>
+  .featured-products {
+    padding: var(--section-spacing) 0;
+    background: var(--color-surface);
+  }
+
+  .featured-products__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+  }
+
+  @media (max-width: 989px) {
+    .featured-products__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 749px) {
+    .featured-products__grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+  }
+</style>
+
+<section class="featured-products">
+  <div class="page-width">
+    <div class="section-header animate-on-scroll">
+      {%- if section.settings.eyebrow != blank -%}
+        <span class="eyebrow">{{ section.settings.eyebrow }}</span>
+      {%- endif -%}
+      <h2 class="section-header__title">{{ section.settings.title }}</h2>
+      {%- if section.settings.text != blank -%}
+        <p class="section-header__text">{{ section.settings.text }}</p>
+      {%- endif -%}
+      <div class="divider"></div>
+    </div>
+
+    <div class="featured-products__grid">
+      {%- assign collection = collections[section.settings.collection] -%}
+      {%- if collection != blank -%}
+        {%- for product in collection.products limit: section.settings.products_to_show -%}
+          <div class="animate-on-scroll">
+            {% render 'product-card', card_product: product %}
+          </div>
+        {%- endfor -%}
+      {%- else -%}
+        {%- for i in (1..4) -%}
+          <div class="product-card animate-on-scroll">
+            <div class="product-card__media">
+              <div class="placeholder-image">Viso</div>
+            </div>
+            <div class="product-card__info">
+              <h3 class="product-card__title">Signature Frame {{ i }}</h3>
+              <p class="product-card__price">Rs. 45,000</p>
+            </div>
+          </div>
+        {%- endfor -%}
+      {%- endif -%}
+    </div>
+
+    {%- if section.settings.button_label != blank -%}
+      <div class="text-center" style="margin-top: 3rem;">
+        <a href="{{ section.settings.button_link | default: collection.url }}" class="btn btn--outline-gold">{{ section.settings.button_label }}</a>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Featured products",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Bestsellers"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "The Edit"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Description",
+      "default": "Our most coveted frames, chosen by those who demand nothing less than exceptional."
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "label": "Products to show",
+      "min": 2,
+      "max": 12,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "View All"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured products"
+    }
+  ]
+}
+{% endschema %}

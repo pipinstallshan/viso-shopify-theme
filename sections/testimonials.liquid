@@ -1,0 +1,144 @@
+<style>
+  .testimonials {
+    padding: var(--section-spacing) 0;
+    background: var(--color-surface);
+  }
+
+  .testimonials__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  .testimonial-card {
+    padding: 2.5rem;
+    border: 1px solid var(--color-border);
+    text-align: center;
+    transition: border-color var(--transition);
+  }
+
+  .testimonial-card:hover {
+    border-color: var(--color-gold);
+  }
+
+  .testimonial-card__stars {
+    color: var(--color-gold);
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.25em;
+    font-size: 0.875rem;
+  }
+
+  .testimonial-card__quote {
+    font-family: var(--font-heading);
+    font-size: 1.125rem;
+    line-height: 1.7;
+    font-style: italic;
+    margin-bottom: 1.5rem;
+    color: var(--color-text);
+  }
+
+  .testimonial-card__author {
+    font-size: 0.8125rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--color-text-muted);
+  }
+
+  @media (max-width: 989px) {
+    .testimonials__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<section class="testimonials">
+  <div class="page-width">
+    <div class="section-header animate-on-scroll">
+      {%- if section.settings.eyebrow != blank -%}
+        <span class="eyebrow">{{ section.settings.eyebrow }}</span>
+      {%- endif -%}
+      <h2 class="section-header__title">{{ section.settings.title }}</h2>
+      <div class="divider"></div>
+    </div>
+
+    <div class="testimonials__grid">
+      {%- for block in section.blocks -%}
+        <div class="testimonial-card animate-on-scroll" {{ block.shopify_attributes }}>
+          <div class="testimonial-card__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="testimonial-card__quote">"{{ block.settings.quote }}"</p>
+          <p class="testimonial-card__author">{{ block.settings.author }}</p>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Testimonials",
+  "tag": "section",
+  "max_blocks": 6,
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Client Voices"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Trusted by the Discerning"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "Testimonial",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "quote",
+          "label": "Quote",
+          "default": "The attention to detail is extraordinary. These aren't just sunglasses — they're a statement."
+        },
+        {
+          "type": "text",
+          "id": "author",
+          "label": "Author",
+          "default": "A.R., Lahore"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Testimonials",
+      "blocks": [
+        {
+          "type": "testimonial",
+          "settings": {
+            "quote": "The attention to detail is extraordinary. These aren't just sunglasses — they're a statement.",
+            "author": "A.R., Lahore"
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "quote": "Finally, eyewear that matches the calibre of my wardrobe. Viso understands luxury.",
+            "author": "S.K., Karachi"
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "quote": "The white-glove delivery experience alone sets Viso apart. Impeccable from start to finish.",
+            "author": "F.H., Islamabad"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

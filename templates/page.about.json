@@ -1,0 +1,14 @@
+{
+  "sections": {
+    "main": {
+      "type": "page-about",
+      "blocks": {
+        "value-1": { "type": "value", "settings": { "title": "Craftsmanship", "text": "Every frame passes through over 200 individual steps of artisan production." } },
+        "value-2": { "type": "value", "settings": { "title": "Curation", "text": "We select only the finest pieces from the world's most respected eyewear houses." } },
+        "value-3": { "type": "value", "settings": { "title": "Experience", "text": "From private styling to white-glove delivery, every touchpoint reflects our standards." } }
+      },
+      "block_order": ["value-1", "value-2", "value-3"]
+    }
+  },
+  "order": ["main"]
+}

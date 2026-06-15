@@ -1,0 +1,125 @@
+<style>
+  .faq-page {
+    padding: var(--section-spacing) 0;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+</style>
+
+<section class="page-header">
+  <div class="page-width animate-on-scroll">
+    <span class="eyebrow">{{ section.settings.eyebrow }}</span>
+    <h1 class="page-header__title">{{ section.settings.title }}</h1>
+    {%- if section.settings.subtitle != blank -%}
+      <p class="page-header__text">{{ section.settings.subtitle }}</p>
+    {%- endif -%}
+    <div class="divider"></div>
+  </div>
+</section>
+
+<section class="faq-page">
+  <div class="page-width">
+    <div class="accordion animate-on-scroll">
+      {%- for block in section.blocks -%}
+        <div class="accordion-item" {{ block.shopify_attributes }}>
+          <button class="accordion-trigger" type="button">
+            {{ block.settings.question }}
+            {% render 'icon-chevron' %}
+          </button>
+          <div class="accordion-content">
+            <div class="accordion-content__inner">{{ block.settings.answer }}</div>
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "FAQ page",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Support"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Frequently Asked Questions"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Everything you need to know about Viso — from ordering to aftercare."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "faq",
+      "name": "FAQ item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question",
+          "default": "How does delivery work?"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "Answer",
+          "default": "<p>We offer complimentary white-glove delivery across Pakistan. Orders are carefully packaged in our signature presentation box and delivered within 2-4 business days. Same-day delivery is available in Lahore, Karachi, and Islamabad for orders placed before 2pm.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "FAQ page",
+      "blocks": [
+        {
+          "type": "faq",
+          "settings": {
+            "question": "How does delivery work?",
+            "answer": "<p>We offer complimentary white-glove delivery across Pakistan. Orders are carefully packaged in our signature presentation box and delivered within 2-4 business days.</p>"
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "What is your return policy?",
+            "answer": "<p>We offer a 30-day hassle-free return policy. If you're not completely satisfied, return your frames in original condition for a full refund. Prescription lenses are non-refundable unless defective.</p>"
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "Do you offer prescription lenses?",
+            "answer": "<p>Yes. We partner with leading optical laboratories to provide premium prescription lenses. Book a private appointment at our flagship store for a comprehensive eye examination and lens fitting.</p>"
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "Are Viso frames authentic?",
+            "answer": "<p>Every frame comes with a certificate of authenticity and is sourced directly from authorised manufacturers. We guarantee 100% authenticity on all products.</p>"
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "Can I book a private styling session?",
+            "answer": "<p>Absolutely. Our private styling sessions are complimentary and available by appointment at our Lahore flagship. Contact our concierge team via WhatsApp or the contact form to schedule.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

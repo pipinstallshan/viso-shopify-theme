@@ -1,0 +1,84 @@
+<style>
+  .search-page {
+    padding: 2rem 0 var(--section-spacing);
+  }
+
+  .search-page__header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .search-form {
+    display: flex;
+    max-width: 600px;
+    margin: 0 auto 3rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .search-form input {
+    flex: 1;
+    padding: 1rem 0;
+    background: transparent;
+    border: none;
+    color: var(--color-text);
+    font-size: 1.25rem;
+  }
+
+  .search-form input:focus {
+    outline: none;
+  }
+
+  .search-form button {
+    padding: 1rem;
+    color: var(--color-gold);
+  }
+
+  .search-results__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+  }
+
+  @media (max-width: 989px) {
+    .search-results__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>
+
+<section class="search-page">
+  <div class="page-width">
+    <div class="search-page__header">
+      <h1 class="page-header__title">Search</h1>
+    </div>
+
+    <form action="/search" method="get" class="search-form" role="search">
+      <input type="search" name="q" value="{{ search.terms | escape }}" placeholder="{{ 'general.search.placeholder' | t }}" aria-label="{{ 'general.accessibility.search' | t }}">
+      <button type="submit" aria-label="Search">{% render 'icon-search' %}</button>
+    </form>
+
+    {%- if search.performed -%}
+      {%- if search.results_count > 0 -%}
+        <p class="text-center text-muted" style="margin-bottom: 2rem;">{{ 'general.search.results_count' | t: count: search.results_count }}</p>
+        <div class="search-results__grid">
+          {%- for item in search.results -%}
+            {%- if item.object_type == 'product' -%}
+              <div class="animate-on-scroll">
+                {% render 'product-card', card_product: item %}
+              </div>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      {%- else -%}
+        <p class="text-center text-muted">{{ 'general.search.no_results' | t }}</p>
+      {%- endif -%}
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Search results",
+  "tag": "section"
+}
+{% endschema %}
