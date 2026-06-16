@@ -1,55 +1,121 @@
 <style>
   .featured-products {
     padding: var(--section-spacing) 0;
+    background: #fff;
+  }
+
+  .featured-products--surface {
+    background: var(--color-surface);
+  }
+
+  .featured-products__tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-top: 1rem;
+  }
+
+  .featured-products__tab {
+    padding: 0.55rem 0.85rem;
+    border: 1px solid rgba(17, 17, 17, 0.12);
+    border-radius: 999px;
+    color: #111;
+    background: #fff;
+    font-size: 0.82rem;
+    font-weight: 900;
+  }
+
+  .featured-products__tab.is-active {
+    color: #fff;
+    background: #111;
+    border-color: #111;
   }
 
   .featured-products__grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 2rem 1.5rem;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1.15rem;
+  }
+
+  .featured-products__placeholder-price {
+    font-size: 1rem;
+    font-weight: 900;
   }
 
   @media (max-width: 989px) {
-    .featured-products__grid { grid-template-columns: repeat(2, 1fr); }
+    .featured-products__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+
+  @media (max-width: 749px) {
+    .featured-products__grid { gap: 0.85rem; }
   }
 </style>
 
-<section class="featured-products">
+<section class="featured-products{% if section.settings.use_surface %} featured-products--surface{% endif %}">
   <div class="page-width">
     <div class="section-header section-header--split animate-on-scroll">
       <div>
-        <span class="eyebrow eyebrow--line">{{ section.settings.eyebrow }}</span>
+        <span class="eyebrow">{{ section.settings.eyebrow }}</span>
         <h2 class="section-header__title">{{ section.settings.title }}</h2>
         {%- if section.settings.text != blank -%}
-          <p class="section-header__text" style="margin-top:1rem;">{{ section.settings.text }}</p>
+          <p class="section-header__text">{{ section.settings.text }}</p>
+        {%- endif -%}
+        {%- if section.settings.show_tabs -%}
+          <div class="featured-products__tabs" aria-label="Product categories">
+            <span class="featured-products__tab is-active">Most Demanded</span>
+            <span class="featured-products__tab">New</span>
+            <span class="featured-products__tab">Restocked</span>
+          </div>
         {%- endif -%}
       </div>
       {%- if section.settings.button_label != blank -%}
-        <a href="{{ section.settings.button_link | default: '/collections/all' }}" class="btn btn--outline-gold btn-arrow">{{ section.settings.button_label }}</a>
+        <a href="{{ section.settings.button_link | default: '/collections/all' }}" class="btn btn--secondary btn-arrow">{{ section.settings.button_label }}</a>
       {%- endif -%}
     </div>
 
     <div class="featured-products__grid stagger-children">
       {%- assign collection = collections[section.settings.collection] -%}
-      {%- if collection != blank -%}
+      {%- if collection != blank and collection.products_count > 0 -%}
         {%- for product in collection.products limit: section.settings.products_to_show -%}
           <div class="animate-on-scroll">
             {% render 'product-card', card_product: product %}
           </div>
         {%- endfor -%}
       {%- else -%}
-        {%- for i in (1..4) -%}
-          <div class="product-card animate-on-scroll">
-            <div class="product-card__media luxury-frame">
-              <div class="placeholder-image">Frame {{ i }}</div>
-              <span class="product-card__badge">New Arrival</span>
-            </div>
-            <div class="product-card__info">
-              <p class="product-card__vendor">Viso Atelier</p>
-              <h3 class="product-card__title">Signature No. {{ i }}</h3>
-              <p class="product-card__price">Rs. {% case i %}{% when 1 %}47,500{% when 2 %}52,000{% when 3 %}38,500{% else %}61,000{% endcase %}</p>
-            </div>
-          </div>
+        {%- for i in (1..8) limit: section.settings.products_to_show -%}
+          <article class="product-card animate-on-scroll">
+            <a href="/collections/all" class="product-card__link">
+              <div class="product-card__media">
+                <div class="placeholder-image">Frame {{ i }}</div>
+                {%- case i -%}
+                  {%- when 1 -%}<span class="product-card__badge">Most Demanded</span>
+                  {%- when 2 -%}<span class="product-card__badge">New</span>
+                  {%- when 3 -%}<span class="product-card__badge">Restocked</span>
+                  {%- else -%}<span class="product-card__badge">Premium</span>
+                {%- endcase -%}
+                <span class="product-card__quick-view">Quick View</span>
+              </div>
+              <div class="product-card__info">
+                <h3 class="product-card__title">Viso Signature {{ i }}</h3>
+                <div class="product-card__rating">★★★★★ <span>{{ i | plus: 3 }} reviews</span></div>
+                <div class="product-card__footer">
+                  <p class="featured-products__placeholder-price">
+                    Rs. {%- case i -%}
+                      {%- when 1 -%}6,999
+                      {%- when 2 -%}8,999
+                      {%- when 3 -%}7,499
+                      {%- when 4 -%}6,499
+                      {%- when 5 -%}9,999
+                      {%- when 6 -%}7,999
+                      {%- when 7 -%}6,999
+                      {%- else -%}8,499
+                    {%- endcase -%}
+                  </p>
+                  <span class="product-card__mini-cta">Shop Now</span>
+                </div>
+              </div>
+            </a>
+          </article>
         {%- endfor -%}
       {%- endif -%}
     </div>
@@ -61,12 +127,14 @@
   "name": "Featured products",
   "tag": "section",
   "settings": [
-    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Bestsellers" },
-    { "type": "text", "id": "title", "label": "Heading", "default": "The Edit" },
-    { "type": "textarea", "id": "text", "label": "Description", "default": "Our most coveted frames, chosen by those who demand nothing less than exceptional." },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Best seller sunglasses" },
+    { "type": "text", "id": "title", "label": "Heading", "default": "They sit on your face respectfully" },
+    { "type": "textarea", "id": "text", "label": "Description", "default": "Ready anytime: strong build, sharp look, easy fit, and premium packaging." },
     { "type": "collection", "id": "collection", "label": "Collection" },
-    { "type": "range", "id": "products_to_show", "label": "Products", "min": 2, "max": 12, "step": 1, "default": 4 },
-    { "type": "text", "id": "button_label", "label": "Button", "default": "View All" },
+    { "type": "range", "id": "products_to_show", "label": "Products to show", "min": 4, "max": 12, "step": 1, "default": 8 },
+    { "type": "checkbox", "id": "show_tabs", "label": "Show category pills", "default": true },
+    { "type": "checkbox", "id": "use_surface", "label": "Use cream background", "default": false },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Shop Now" },
     { "type": "url", "id": "button_link", "label": "Button link" }
   ],
   "presets": [{ "name": "Featured products" }]

@@ -65,7 +65,7 @@
   <script>document.documentElement.className = document.documentElement.className.replace('no-js', 'js');</script>
 </head>
 
-<body class="template-{{ template.name | handle }}{% if template.suffix %} template-{{ template.name | handle }}-{{ template.suffix }}{% endif %}{% if template.name == 'index' %} template-index{% endif %}">
+<body class="template-{{ template.name | handle }}{% if template.suffix %} template-{{ template.name | handle }}-{{ template.suffix }}{% endif %}">
   <a class="skip-link visually-hidden" href="#MainContent">{{ 'general.accessibility.skip_to_content' | t }}</a>
 
   {% section 'announcement-bar' %}

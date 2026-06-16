@@ -1,0 +1,132 @@
+<style>
+  .reviews-wall {
+    padding: var(--section-spacing) 0;
+    background: var(--color-surface);
+  }
+
+  .reviews-wall__summary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-top: 1rem;
+    color: #111;
+    font-weight: 900;
+  }
+
+  .reviews-wall__stars {
+    color: #f5b400;
+    letter-spacing: 0.08em;
+  }
+
+  .reviews-wall__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .reviews-wall__card {
+    padding: 1.35rem;
+    border: 1px solid rgba(17, 17, 17, 0.08);
+    border-radius: 22px;
+    background: #fff;
+    box-shadow: 0 16px 38px rgba(17, 17, 17, 0.06);
+  }
+
+  .reviews-wall__card-stars {
+    margin-bottom: 0.8rem;
+    color: #f5b400;
+    font-size: 0.9rem;
+  }
+
+  .reviews-wall__quote {
+    margin-bottom: 1rem;
+    color: #111;
+    font-weight: 750;
+  }
+
+  .reviews-wall__meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    color: var(--color-text-muted);
+    font-size: 0.85rem;
+    font-weight: 800;
+  }
+
+  .reviews-wall__verified {
+    color: #118a38;
+  }
+
+  @media (max-width: 989px) {
+    .reviews-wall__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+
+  @media (max-width: 749px) {
+    .reviews-wall__grid { grid-template-columns: 1fr; }
+  }
+</style>
+
+<section class="reviews-wall">
+  <div class="page-width">
+    <div class="section-header section-header--center animate-on-scroll">
+      <span class="eyebrow">{{ section.settings.eyebrow }}</span>
+      <h2 class="section-header__title">{{ section.settings.title }}</h2>
+      <p class="section-header__text">{{ section.settings.text }}</p>
+      <div class="reviews-wall__summary">
+        <span class="reviews-wall__stars">★★★★★</span>
+        <span>{{ section.settings.summary }}</span>
+      </div>
+    </div>
+
+    <div class="reviews-wall__grid stagger-children">
+      {%- for block in section.blocks -%}
+        <article class="reviews-wall__card animate-on-scroll" {{ block.shopify_attributes }}>
+          <div class="reviews-wall__card-stars">★★★★★</div>
+          <p class="reviews-wall__quote">“{{ block.settings.quote }}”</p>
+          <div class="reviews-wall__meta">
+            <span>{{ block.settings.author }}</span>
+            <span class="reviews-wall__verified">Verified buyer</span>
+          </div>
+        </article>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Reviews wall",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Let customers speak for us" },
+    { "type": "text", "id": "title", "label": "Heading", "default": "Rated by Pakistan's sunglass lovers" },
+    { "type": "textarea", "id": "text", "label": "Text", "default": "Real feedback about build quality, packaging, fit and delivery experience." },
+    { "type": "text", "id": "summary", "label": "Summary", "default": "4.9/5 based on 232 reviews" }
+  ],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Review",
+      "settings": [
+        { "type": "textarea", "id": "quote", "label": "Quote", "default": "The quality, packaging and overall feel are super premium. Definitely worth it." },
+        { "type": "text", "id": "author", "label": "Author", "default": "Anonymous" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Reviews wall",
+      "blocks": [
+        { "type": "review", "settings": { "quote": "The quality, packaging and overall feel are super premium. Definitely worth it.", "author": "Hasan, Karachi" } },
+        { "type": "review", "settings": { "quote": "Strong build quality, comfortable fit and the look is classy in sunlight.", "author": "Umar, Lahore" } },
+        { "type": "review", "settings": { "quote": "Fast delivery and packaging felt like a proper premium brand.", "author": "Maha, Islamabad" } },
+        { "type": "review", "settings": { "quote": "Do not think, just buy it. The finish is better than expected.", "author": "Bilal, Faisalabad" } },
+        { "type": "review", "settings": { "quote": "Great value for money and the frame feels sturdy.", "author": "Iqra, Lahore" } },
+        { "type": "review", "settings": { "quote": "Second order and they did not disappoint. Customer service was excellent.", "author": "Zahid, Karachi" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -14,43 +14,43 @@
         "type": "color",
         "id": "color_background",
         "label": "Background",
-        "default": "#0a0a0a"
+        "default": "#ffffff"
       },
       {
         "type": "color",
         "id": "color_surface",
         "label": "Surface",
-        "default": "#141414"
+        "default": "#f7f2e9"
       },
       {
         "type": "color",
         "id": "color_text",
         "label": "Text",
-        "default": "#f5f0e8"
+        "default": "#111111"
       },
       {
         "type": "color",
         "id": "color_text_muted",
         "label": "Muted text",
-        "default": "#a8a29e"
+        "default": "#666666"
       },
       {
         "type": "color",
         "id": "color_accent",
         "label": "Accent (Emerald)",
-        "default": "#1a3d32"
+        "default": "#111111"
       },
       {
         "type": "color",
         "id": "color_gold",
         "label": "Gold accent",
-        "default": "#c9a962"
+        "default": "#d4a24c"
       },
       {
         "type": "color",
         "id": "color_border",
         "label": "Border",
-        "default": "#2a2a2a"
+        "default": "#e7dfd2"
       }
     ]
   },
@@ -61,7 +61,7 @@
         "type": "font_picker",
         "id": "font_heading",
         "label": "Heading font",
-        "default": "cormorant_garamond_n4"
+        "default": "poppins_n7"
       },
       {
         "type": "font_picker",

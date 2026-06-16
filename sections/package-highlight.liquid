@@ -1,0 +1,139 @@
+<style>
+  .package-highlight {
+    padding: var(--section-spacing) 0;
+    background: #111;
+    color: #fff;
+  }
+
+  .package-highlight__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    gap: clamp(2rem, 6vw, 5rem);
+    align-items: center;
+  }
+
+  .package-highlight .eyebrow,
+  .package-highlight__text {
+    color: rgba(255, 255, 255, 0.72);
+  }
+
+  .package-highlight .eyebrow::before {
+    background: var(--color-gold);
+  }
+
+  .package-highlight__title {
+    margin-bottom: 1rem;
+  }
+
+  .package-highlight__text {
+    max-width: 560px;
+    font-size: 1.04rem;
+  }
+
+  .package-highlight__visual {
+    overflow: hidden;
+    border-radius: 30px;
+    background: #222;
+    box-shadow: 0 28px 80px rgba(0, 0, 0, 0.3);
+  }
+
+  .package-highlight__visual img {
+    width: 100%;
+    height: 100%;
+    min-height: 420px;
+    object-fit: cover;
+  }
+
+  .package-highlight__items {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.9rem;
+    margin-top: 2rem;
+  }
+
+  .package-highlight__item {
+    padding: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.06);
+  }
+
+  .package-highlight__item strong {
+    display: block;
+    margin-bottom: 0.25rem;
+    color: #fff;
+  }
+
+  .package-highlight__item span {
+    color: rgba(255, 255, 255, 0.65);
+    font-size: 0.9rem;
+  }
+
+  @media (max-width: 989px) {
+    .package-highlight__grid { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 749px) {
+    .package-highlight__items { grid-template-columns: 1fr; }
+  }
+</style>
+
+<section class="package-highlight">
+  <div class="page-width package-highlight__grid">
+    <div class="package-highlight__content animate-on-scroll">
+      <span class="eyebrow">{{ section.settings.eyebrow }}</span>
+      <h2 class="package-highlight__title">{{ section.settings.title }}</h2>
+      <p class="package-highlight__text">{{ section.settings.text }}</p>
+      <div class="package-highlight__items">
+        {%- for block in section.blocks -%}
+          <div class="package-highlight__item" {{ block.shopify_attributes }}>
+            <strong>{{ block.settings.title }}</strong>
+            <span>{{ block.settings.text }}</span>
+          </div>
+        {%- endfor -%}
+      </div>
+    </div>
+
+    <div class="package-highlight__visual animate-on-scroll">
+      {%- if section.settings.image != blank -%}
+        {{ section.settings.image | image_url: width: 1100 | image_tag: loading: 'lazy', alt: section.settings.title }}
+      {%- else -%}
+        <div class="placeholder-image" style="min-height: 420px; background: linear-gradient(145deg, #1a1a1a, #3b2a12); color: #fff;">What's in the package</div>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Package highlight",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "What's in the package" },
+    { "type": "text", "id": "title", "label": "Heading", "default": "Premium feel from unboxing to first wear" },
+    { "type": "textarea", "id": "text", "label": "Text", "default": "Every order is packed to feel like a gift: protective case, microfiber cloth, care card and secure shipping packaging." },
+    { "type": "image_picker", "id": "image", "label": "Package image" }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Package item",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Title", "default": "Premium Case" },
+        { "type": "text", "id": "text", "label": "Text", "default": "Protective carry case included." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Package highlight",
+      "blocks": [
+        { "type": "item", "settings": { "title": "Premium Case", "text": "Protective carry case included." } },
+        { "type": "item", "settings": { "title": "Microfiber Cloth", "text": "Keep lenses spotless." } },
+        { "type": "item", "settings": { "title": "Care Card", "text": "Simple care instructions." } },
+        { "type": "item", "settings": { "title": "Secure Box", "text": "Gift-ready packaging." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -3,133 +3,144 @@
     "hero": {
       "type": "hero",
       "settings": {
-        "eyebrow": "Spring Summer 2026",
-        "title": "See the World <em>Differently</em>",
-        "text": "Curated eyewear for Pakistan's most discerning. Where Italian craftsmanship meets contemporary elegance — each frame a quiet statement of refinement.",
-        "button_label": "Shop Collection",
+        "eyebrow": "New drops are live",
+        "title": "Pakistan's <em>Premium</em> Sunglasses",
+        "text": "Standout frames, premium packaging, fast delivery, and styles made for Pakistani sun. Pick your look and wear it with confidence.",
+        "button_label": "Shop Best Sellers",
         "button_link": "shopify://collections/all",
-        "button_label_2": "Private Appointment",
-        "button_link_2": "shopify://pages/contact"
+        "button_label_2": "New Arrivals",
+        "button_link_2": "shopify://collections/all",
+        "float_title": "Seen on creators",
+        "float_text": "Loved across Lahore, Karachi & Islamabad"
+      }
+    },
+    "creator-strip": {
+      "type": "creator-strip",
+      "blocks": {
+        "creator-1": { "type": "creator", "settings": { "name": "Irfan" } },
+        "creator-2": { "type": "creator", "settings": { "name": "Daniyal" } },
+        "creator-3": { "type": "creator", "settings": { "name": "Kashif" } },
+        "creator-4": { "type": "creator", "settings": { "name": "Azlan" } },
+        "creator-5": { "type": "creator", "settings": { "name": "Sana" } }
+      },
+      "block_order": ["creator-1", "creator-2", "creator-3", "creator-4", "creator-5"],
+      "settings": {
+        "heading": "Loved by creators, stylists and everyday legends"
       }
     },
     "marquee": {
       "type": "marquee",
       "blocks": {
-        "m1": { "type": "text", "settings": { "text": "Italian Craftsmanship" } },
-        "m2": { "type": "text", "settings": { "text": "UV400 Protection" } },
-        "m3": { "type": "text", "settings": { "text": "Hand-Polished Acetate" } },
-        "m4": { "type": "text", "settings": { "text": "White Glove Delivery" } },
-        "m5": { "type": "text", "settings": { "text": "Certificate of Authenticity" } }
+        "m1": { "type": "text", "settings": { "text": "Premium Sunglasses" } },
+        "m2": { "type": "text", "settings": { "text": "Fast Delivery" } },
+        "m3": { "type": "text", "settings": { "text": "30 Days Money Back" } },
+        "m4": { "type": "text", "settings": { "text": "Secure Payment" } },
+        "m5": { "type": "text", "settings": { "text": "Best Quality Guaranteed" } }
       },
       "block_order": ["m1", "m2", "m3", "m4", "m5"]
+    },
+    "best-sellers": {
+      "type": "featured-products",
+      "settings": {
+        "eyebrow": "Best seller sunglasses",
+        "title": "They sit on your face respectfully",
+        "text": "Most demanded shades for everyday confidence: premium finish, comfortable fit and strong sun protection.",
+        "products_to_show": 8,
+        "show_tabs": true,
+        "use_surface": false,
+        "button_label": "Shop Now",
+        "button_link": "shopify://collections/all"
+      }
     },
     "featured-collections": {
       "type": "featured-collections",
       "blocks": {
-        "collection-1": { "type": "collection", "settings": { "title": "The Aviator Edit" } },
-        "collection-2": { "type": "collection", "settings": { "title": "Cat Eye" } },
-        "collection-3": { "type": "collection", "settings": { "title": "Oversized" } }
+        "collection-1": { "type": "collection", "settings": { "title": "Best Sellers" } },
+        "collection-2": { "type": "collection", "settings": { "title": "New Arrivals" } },
+        "collection-3": { "type": "collection", "settings": { "title": "IIIrd Planet Collection" } }
       },
       "block_order": ["collection-1", "collection-2", "collection-3"],
       "settings": {
-        "eyebrow": "Curated For You",
-        "title": "Signature Collections",
-        "text": "Each collection tells a story of precision, heritage, and uncompromising style."
+        "eyebrow": "Exclusive Looks",
+        "title": "Find your frame",
+        "text": "Shop by mood: bold, clean, oversized, tinted, or everyday classic."
       }
     },
-    "featured-products": {
-      "type": "featured-products",
-      "settings": {
-        "eyebrow": "Bestsellers",
-        "title": "The Edit",
-        "text": "Our most coveted frames, chosen by those who demand nothing less than exceptional.",
-        "products_to_show": 4,
-        "button_label": "View All",
-        "button_link": "shopify://collections/all"
-      }
-    },
-    "lookbook": {
-      "type": "lookbook",
+    "package": {
+      "type": "package-highlight",
       "blocks": {
-        "l1": { "type": "look", "settings": { "title": "Midnight Aviator", "subtitle": "SS26 Collection" } },
-        "l2": { "type": "look", "settings": { "title": "Emerald Cat Eye", "subtitle": "Signature Series" } },
-        "l3": { "type": "look", "settings": { "title": "Gold Temple", "subtitle": "Limited Edition" } },
-        "l4": { "type": "look", "settings": { "title": "Polarised Classic", "subtitle": "Essentials" } },
-        "l5": { "type": "look", "settings": { "title": "Tortoise Oversized", "subtitle": "Heritage Line" } }
+        "item-1": { "type": "item", "settings": { "title": "Premium Case", "text": "Protective carry case included." } },
+        "item-2": { "type": "item", "settings": { "title": "Microfiber Cloth", "text": "Keep lenses spotless." } },
+        "item-3": { "type": "item", "settings": { "title": "Care Card", "text": "Simple care instructions." } },
+        "item-4": { "type": "item", "settings": { "title": "Secure Box", "text": "Gift-ready packaging." } }
       },
-      "block_order": ["l1", "l2", "l3", "l4", "l5"],
+      "block_order": ["item-1", "item-2", "item-3", "item-4"],
       "settings": {
-        "eyebrow": "Editorial",
-        "title": "The Viso Lookbook"
+        "eyebrow": "What's in the package",
+        "title": "Premium feel from unboxing to first wear",
+        "text": "Every order is packed to feel like a gift: protective case, microfiber cloth, care card and secure shipping packaging."
       }
     },
-    "brand-story": {
-      "type": "brand-story",
+    "reviews": {
+      "type": "reviews-wall",
       "blocks": {
-        "s1": { "type": "stat", "settings": { "number": "200", "suffix": "+", "label": "Craft Steps Per Frame" } },
-        "s2": { "type": "stat", "settings": { "number": "12", "suffix": "", "label": "Global Atelier Partners" } },
-        "s3": { "type": "stat", "settings": { "number": "100", "suffix": "%", "label": "UV Protection" } },
-        "s4": { "type": "stat", "settings": { "number": "2", "suffix": "yr", "label": "Warranty Included" } }
+        "review-1": { "type": "review", "settings": { "quote": "The quality, packaging and overall feel are super premium. Definitely worth it.", "author": "Hasan, Karachi" } },
+        "review-2": { "type": "review", "settings": { "quote": "Strong build quality, comfortable fit and the look is classy in sunlight.", "author": "Umar, Lahore" } },
+        "review-3": { "type": "review", "settings": { "quote": "Fast delivery and packaging felt like a proper premium brand.", "author": "Maha, Islamabad" } },
+        "review-4": { "type": "review", "settings": { "quote": "Do not think, just buy it. The finish is better than expected.", "author": "Bilal, Faisalabad" } },
+        "review-5": { "type": "review", "settings": { "quote": "Great value for money and the frame feels sturdy.", "author": "Iqra, Lahore" } },
+        "review-6": { "type": "review", "settings": { "quote": "Second order and they did not disappoint. Customer service was excellent.", "author": "Zahid, Karachi" } }
       },
-      "block_order": ["s1", "s2", "s3", "s4"],
+      "block_order": ["review-1", "review-2", "review-3", "review-4", "review-5", "review-6"],
       "settings": {
-        "eyebrow": "The Viso Philosophy",
-        "quote": "Luxury is not loud. It is the weight of acetate on your temples, the clarity through Italian lenses, the confidence of knowing you chose impeccably.",
-        "author": "Founder's Note"
+        "eyebrow": "Let customers speak for us",
+        "title": "Rated by Pakistan's sunglass lovers",
+        "text": "Real feedback about build quality, packaging, fit and delivery experience.",
+        "summary": "4.9/5 based on 232 reviews"
       }
-    },
-    "image-with-text": {
-      "type": "image-with-text",
-      "settings": {
-        "layout": "image_left",
-        "eyebrow": "Our Craft",
-        "title": "Where Art Meets Precision",
-        "text": "<p>Every Viso frame begins in the ateliers of Northern Italy, where master artisans shape acetate with techniques passed down through generations.</p><p>We believe true luxury lies not in excess, but in the invisible details — the weight of a temple, the curve of a bridge, the clarity of a lens.</p>",
-        "button_label": "Discover Our Process",
-        "button_link": "shopify://pages/about"
-      }
-    },
-    "testimonials": {
-      "type": "testimonials",
-      "blocks": {
-        "testimonial-1": { "type": "testimonial", "settings": { "quote": "The attention to detail is extraordinary. These aren't just sunglasses — they're a statement.", "author": "A.R., Lahore" } },
-        "testimonial-2": { "type": "testimonial", "settings": { "quote": "Finally, eyewear that matches the calibre of my wardrobe. Viso understands luxury.", "author": "S.K., Karachi" } },
-        "testimonial-3": { "type": "testimonial", "settings": { "quote": "The white-glove delivery experience alone sets Viso apart. Impeccable from start to finish.", "author": "F.H., Islamabad" } }
-      },
-      "block_order": ["testimonial-1", "testimonial-2", "testimonial-3"],
-      "settings": { "eyebrow": "Client Voices", "title": "Trusted by the Discerning" }
     },
     "trust-bar": {
       "type": "trust-bar",
       "blocks": {
-        "badge-1": { "type": "badge", "settings": { "icon": "shipping", "text": "Complimentary Delivery" } },
-        "badge-2": { "type": "badge", "settings": { "icon": "warranty", "text": "2-Year Warranty" } },
-        "badge-3": { "type": "badge", "settings": { "icon": "returns", "text": "30-Day Returns" } },
-        "badge-4": { "type": "badge", "settings": { "icon": "support", "text": "Personal Concierge" } }
+        "badge-1": { "type": "badge", "settings": { "icon": "star", "text": "Best Quality Guaranteed" } },
+        "badge-2": { "type": "badge", "settings": { "icon": "returns", "text": "30 Days Money Back" } },
+        "badge-3": { "type": "badge", "settings": { "icon": "support", "text": "Be Part of Viso Family" } },
+        "badge-4": { "type": "badge", "settings": { "icon": "warranty", "text": "Secure Payment" } }
       },
       "block_order": ["badge-1", "badge-2", "badge-3", "badge-4"]
     },
-    "cta-banner": {
+    "story": {
+      "type": "image-with-text",
+      "settings": {
+        "layout": "image_left",
+        "eyebrow": "Our Story",
+        "title": "Original sunglasses for Pakistan",
+        "text": "<p>Viso is built for people who want sunglasses that look sharp, feel comfortable, and arrive with a premium experience.</p><p>From everyday black frames to statement tints, our collection is designed for the Pakistani sun and the people who move through it with confidence.</p>",
+        "button_label": "Read Our Story",
+        "button_link": "shopify://pages/about"
+      }
+    },
+    "cta": {
       "type": "cta-banner",
       "settings": {
-        "eyebrow": "Private Appointments",
-        "title": "Experience Viso In Person",
-        "text": "Book a private styling session at our Lahore flagship. Let our experts curate the perfect frame for your face and lifestyle.",
-        "button_label": "Book Appointment",
-        "button_link": "shopify://pages/contact"
+        "eyebrow": "Ready for your next pair?",
+        "title": "Pick the shade that matches your energy",
+        "text": "Browse best sellers, new arrivals and exclusive looks before they sell out.",
+        "button_label": "Shop Sunglasses",
+        "button_link": "shopify://collections/all"
       }
     }
   },
   "order": [
     "hero",
+    "creator-strip",
     "marquee",
+    "best-sellers",
     "featured-collections",
-    "featured-products",
-    "lookbook",
-    "brand-story",
-    "image-with-text",
-    "testimonials",
+    "package",
+    "reviews",
     "trust-bar",
-    "cta-banner"
+    "story",
+    "cta"
   ]
 }
