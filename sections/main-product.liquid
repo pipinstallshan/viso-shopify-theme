@@ -130,7 +130,7 @@
       <div class="product-gallery luxury-frame">
         <div class="product-gallery__main" id="ProductGallery-Main">
           {%- if product.featured_image -%}
-            {{ product.featured_image | image_url: width: 1400 | image_tag: loading: 'eager', id: 'ProductGallery-Featured', alt: product.title }}
+            {{ product.featured_image | image_url: width: 1400 | image_tag: loading: 'eager', id: 'ProductGallery-Featured', alt: product.title, data-product-gallery-main: '' }}
           {%- else -%}
             <div class="placeholder-image" style="height:100%;">Viso</div>
           {%- endif -%}
@@ -138,7 +138,14 @@
         {%- if product.images.size > 1 -%}
           <div class="product-gallery__thumbs">
             {%- for image in product.images -%}
-              <button class="product-gallery__thumb{% if forloop.first %} is-active{% endif %}" data-gallery-thumb="{{ image | image_url: width: 1400 }}" aria-label="View image {{ forloop.index }}">
+              <button
+                type="button"
+                class="product-gallery__thumb{% if forloop.first %} is-active{% endif %}"
+                data-gallery-thumb="{{ image | image_url: width: 1400 }}"
+                data-gallery-alt="{{ image.alt | default: product.title | escape }}"
+                aria-label="View image {{ forloop.index }}"
+                {% if forloop.first %}aria-current="true"{% endif %}
+              >
                 {{ image | image_url: width: 144 | image_tag: loading: 'lazy', alt: image.alt }}
               </button>
             {%- endfor -%}
@@ -235,14 +242,34 @@
 </section>
 
 <script>
-  document.querySelectorAll('[data-gallery-thumb]').forEach(thumb => {
-    thumb.addEventListener('click', () => {
-      const main = document.getElementById('ProductGallery-Featured');
-      if (main) main.src = thumb.dataset.galleryThumb;
-      document.querySelectorAll('.product-gallery__thumb').forEach(t => t.classList.remove('is-active'));
-      thumb.classList.add('is-active');
+  (() => {
+    const gallery = document.querySelector('.product-gallery');
+    if (!gallery) return;
+
+    const main = gallery.querySelector('[data-product-gallery-main]');
+    const thumbs = gallery.querySelectorAll('[data-gallery-thumb]');
+    if (!main || !thumbs.length) return;
+
+    thumbs.forEach((thumb) => {
+      thumb.addEventListener('click', () => {
+        const nextImage = thumb.dataset.galleryThumb;
+        if (!nextImage) return;
+
+        // Shopify's image_tag outputs srcset; clear it so the clicked image wins.
+        main.removeAttribute('srcset');
+        main.removeAttribute('sizes');
+        main.src = nextImage;
+        main.alt = thumb.dataset.galleryAlt || main.alt;
+
+        thumbs.forEach((item) => {
+          item.classList.remove('is-active');
+          item.removeAttribute('aria-current');
+        });
+        thumb.classList.add('is-active');
+        thumb.setAttribute('aria-current', 'true');
+      });
     });
-  });
+  })();
 </script>
 
 {% schema %}
